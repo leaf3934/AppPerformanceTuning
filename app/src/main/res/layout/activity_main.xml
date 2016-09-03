@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_view_stub_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="mergeButton"
+        android:text="merge标签"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="spaceButton"
+        android:text="space标签"/>
+    <Button
+        android:id="@+id/button_url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="viewStubButton"
+        android:text="ViewStub标签"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView_show_glide"
+            android:layout_gravity="center"
+            android:background="#0ff"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerInside" />
+
+        <ViewStub
+            android:id="@+id/viewStubId"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout="@layout/inclue_viewstub_layout"/>
+
+    </FrameLayout>
+
+<!--在使用惰性控件ViewStub时有两点需要特别注意：
+
+（1）ViewStub对象只可以Inflate一次，之后ViewStub对象会被置为空。
+    按句话说，某个被ViewStub对象指定的布局被Inflate一次之后，就不可以再次通过ViewStub对象来控制它了。
+（2）ViewStub控件只能用来Inflate一个布局文件，而不能Inflate某个具体的View。
+-->
+</LinearLayout>
