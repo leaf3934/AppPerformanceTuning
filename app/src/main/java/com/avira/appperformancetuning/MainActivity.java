@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewStub mViewStub;
     private ImageView imageView_show_glide;
     private String URL_DOWNLOAD_IMAGE1 = "http://img.61gequ.com/allimg/2013-02/2167-130201101H7.jpg";
+    private ViewStub mViewStubInflatedId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         imageView_show_glide = (ImageView) findViewById(R.id.imageView_show_glide);
 
         mViewStub = (ViewStub) findViewById(R.id.viewStubId);
+        mViewStubInflatedId = ((ViewStub) findViewById(R.id.viewStubInflatedId));
     }
 
 
@@ -45,17 +47,32 @@ public class MainActivity extends AppCompatActivity {
                         super.onLoadFailed(e, errorDrawable);
                         mViewStub.setVisibility(View.GONE);
                     }
-                    //点击两次就会出现异常ViewStub must have a non-null ViewGroup viewParent
+
                     @Override
                     public void onLoadStarted(Drawable placeholder) {
                         super.onLoadStarted(placeholder);
-                        if (mViewStub != null) {
+
+
+                        //第一种：不可行,点击两次就会出现异常ViewStub must have a non-null ViewGroup viewParent
+/*                        if (mViewStub != null) {
                             mViewStub.inflate();
                         }
+*/
+                        //第二种:可行，推荐使用这种显示和隐藏的方式
+                        if (mViewStub != null) {
+                            mViewStub.setVisibility(View.VISIBLE);
+                        }
+
+                        //第三种：可行,覆盖待加载视图的id值
+/*                        if (mViewStub == null) {
+                            mViewStubInflatedId.inflate();
+                        }
+*/
                     }
 
                     @Override
-                    public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> animation) {
+                    public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable>
+                            animation) {
                         super.onResourceReady(resource, animation);
                         mViewStub.setVisibility(View.GONE);
                     }

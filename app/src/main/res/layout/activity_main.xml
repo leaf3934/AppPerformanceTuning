@@ -36,12 +36,17 @@
 
         <ViewStub
             android:id="@+id/viewStubId"
+            android:inflatedId="@+id/viewStubInflatedId"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout="@layout/inclue_viewstub_layout"/>
 
     </FrameLayout>
+
+    <!--android:inflatedId
+    setInflatedId(int)
+    覆盖待加载视图的id值。-->
 
 <!--在使用惰性控件ViewStub时有两点需要特别注意：
 
